@@ -1,0 +1,876 @@
+Template Literals (şablon dizileri)
+
+https://codesandbox.io/s/ecstatic-smoke-c9i6qm?file=/src/index.js
+
+let isim = `React Trilogy`;
+let surum = "2.01";
+let destek = () => {
+  return "HTML ve Javascript";
+};
+
+let baskiAdet = 200;
+let basimSayi = 10;
+
+console.log(`Yeni kitabımız ${isim} yeni ${surum}
+sürümü ile ${destek()} fonksiyonlarına daha fazla destek sağlamaktadır.`);
+
+console.log(`${isim} kitabımız şu ana kadar ${basimSayi} kez baskı yaptı.
+Her baskıda ${baskiAdet} basılan kitap toplam ${
+  baskiAdet * basimSayi
+} kadar satıldı.
+`);
+
+
+
+Shorthand Property Names (kısayol obje anahtarı isimleri)
+https://codesandbox.io/s/quiet-dawn-gsjv2m?file=/src/index.js
+
+let progdili = "Javascript";
+
+let surum = "ES6";
+
+let lecture1 = { progdili, surum };
+
+console.log(lecture1);
+
+https://codesandbox.io/s/charming-cannon-5hbj83?file=/src/MyButton.js
+export default function MyButton(props) {
+  let sayi1 = 22;
+  let sayi2 = 23;
+  let sayilar = { sayi1, sayi2 };
+
+  let { piece, price } = props;
+
+  return (
+    <button
+      onClick={() => {
+        console.log(`Total Price is ${sayilar.sayi1 * sayilar.sayi2}`);
+
+        console.log(`Gelen Sayıların ilki = ${props.piece}`);
+        console.log(`Gelen Sayıların sonuncusu = ${props.price}`);
+        console.log(`Gelen Sayıların çarpımı = ${props.price * props.piece}`);
+
+        console.log("props d1 : ", piece);
+        console.log("props d2 : ", price);
+      }}
+    >
+      Show Total Price
+    </button>
+  );
+}
+
+
+
+
+Arrow Functions (oklu fonksiyon ifadeleri)
+https://codesandbox.io/s/bold-microservice-0wvv15?file=/src/index.js
+
+carp(8, 9);
+
+function carp(s1, s2) {
+  console.log("çarpım sonucu = ", s1 * s2);
+}
+
+// kdvHesapla(200, 18);
+
+let kdvHesapla = (tutar, oran) => {
+  console.log("kdv miktarı = ", tutar * (oran / 100));
+};
+
+kdvHesapla(200, 18);
+
+const adSoyad = (ad, soyad) => ad + " " + soyad;
+console.log(adSoyad("ali", "demirci"));
+
+const triple = (number) => number ** 3;
+console.log(triple(3));
+
+
+
+Object/Array Destructuring (obje/dizilerin parçalarına bölünüp değişkenlere atanması)
+https://codesandbox.io/s/kind-fog-ytygeh?file=/src/index.js
+
+const urunSatis = { ad: "Göze şeftali 200ml", fiyat: 0.75, adet: 100 };
+
+const { ad, fiyat, adet } = urunSatis;
+
+console.log(ad);
+console.log(fiyat);
+console.log(adet);
+
+
+
+
+https://codesandbox.io/s/beautiful-darkness-8ot24q?file=/src/index.js
+
+
+
+const urunSatis = { ad: "Göze şeftali 200ml", fiyat: 0.75, adet: 100 };
+
+const { ad, ...totalPrice } = urunSatis;
+
+console.log(ad);
+console.log(totalPrice.fiyat * totalPrice.adet);
+
+
+
+https://codesandbox.io/s/trusting-violet-4czx56?file=/src/App.js
+
+import "./styles.css";
+
+export default function App({ taban, yukseklik }) {
+  return (
+    <div className="App">
+      <h1>Üçgenin Alanı</h1>
+      <p>Taban Uzunluğu : {taban}</p>
+      <p>Yükseklik : {yukseklik}</p>
+      <h2>Sonuç : {(taban * yukseklik) / 2}</h2>
+    </div>
+  );
+}
+
+https://codesandbox.io/s/quizzical-banach-20zujj?file=/src/index.js
+
+const dizi = [12, 13, 14, 15, 16];
+
+const [d1, d2, d3, d4, d5] = dizi;
+
+console.log(d1);
+console.log(d2);
+console.log(d3);
+console.log(d4);
+console.log(d5);
+
+
+
+https://codesandbox.io/s/weathered-fire-oo52uc?file=/src/index.js
+
+const telNolari = ["05555554433", "05443332211", "05337877322"];
+
+const [ilk, ...kalanTelNolari] = telNolari;
+console.log(telNolari);
+console.log(ilk);
+console.log(kalanTelNolari);
+
+https://codesandbox.io/s/inspiring-water-gbfj3f?file=/src/index.js
+
+const telNolari = ["05555554433", "05443332211", "05337877322"];
+
+const [...kalanTelNolari, son] = telNolari;
+
+// SyntaxError: /src/index.js: Rest element must be last element (3:24)
+
+console.log(telNolari);
+console.log(son);
+console.log(kalanTelNolari);
+
+
+Parameter Defaults (varsayılan parametreler değerleri)
+https://codesandbox.io/s/naughty-bhaskara-9npkfd?file=/src/index.js
+
+function kdvHesapla(tutar, adet = 1, kdv = 0.12) {
+  return tutar * adet * kdv;
+}
+
+console.log(kdvHesapla(100));
+console.log(kdvHesapla(200, 2));
+console.log(kdvHesapla(150, 2, 0.18));
+
+
+
+https://codesandbox.io/s/heuristic-torvalds-mec6pe?file=/src/App.js
+
+import "./styles.css";
+
+export default function App() {
+  const degerler = { baslangic: 1, artis: 5 };
+
+  const artis = (adimSayisi, sayac = degerler) => {
+    console.log(sayac);
+    return sayac.baslangic + adimSayisi * sayac.artis;
+  };
+
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <button
+        onClick={() => {
+          console.log(artis(10, { baslangic: 2, artis: 10 }));
+        }}
+      >
+        Yazdır1
+      </button>
+
+      <button
+        onClick={() => {
+          console.log(artis(10));
+        }}
+      >
+        Yazdır2
+      </button>
+    </div>
+  );
+}
+
+
+
+Rest/Spread Operator (toparlama/yayma operatörü)
+
+https://codesandbox.io/s/red-monad-imsm7l?file=/src/index.js
+
+const uye = { ad: "ahmet", soyad: "demir", uyeNo: "2021-12", dolapNo: 22 };
+
+console.log(uye);
+
+let uyeDegistir = { ...uye, dolapNo: 101 };
+console.log(uyeDegistir);
+
+
+
+https://codesandbox.io/s/hardcore-darkness-9yyreb?file=/src/App.js:0-2631
+
+
+export default function App() {
+  // fonksiyona verilecek başlangıç nesnesi ayarlandı.
+  let ACILIS_DEGER = {
+    bilgisayarListesi: ["HP probook 7560", "Dell Ispiron", "Lenovo 7000"],
+    islemAcik: true
+  };
+
+  // ekleme işlemini yapacak fonksiyon yazıldı.
+  // ilk parametre ile üzerinde değişiklik yapılacak nesne verildi.
+  // ikinci parametre ile değişiklik türü ve yeni eklenecek değeri
+  // içeren nesne fonksiyona verildi.
+
+  const satislar = (baslangic = ACILIS_DEGER, islem) => {
+    // switch case ile islem türüne göre asıl listede manupilasyon
+    // yapılması sağlandı.
+    switch (islem.tur) {
+      // bilgisayar_ekle ile asıl listedeki bilgisayarListesi arrayine
+      // islem parametresinden gelen (nesnesinden) gelen yuklenecekEleman
+      // değişkeni eklendi.
+      case "BILGISAYAR_EKLE":
+        return {
+          ...baslangic, // baslangic nesnesini parçala
+          bilgisayarListesi: [
+            // ayrıca baslangic nesnesi içindeki
+            // bilgisayarListesi arrayini al
+            // bu arrayide parcala
+            ...baslangic.bilgisayarListesi,
+            // parçalanan arraye islem nesnesindeki yuklenecekEleman değişkenindeki
+            // değeri ekle
+            islem.yuklenecekEleman
+          ]
+        };
+      default:
+        return baslangic;
+    }
+  };
+
+  // input dan alınacak text için değişken atandı.
+  let inputDeger = "";
+
+  // input içine yazı yazıldığı zaman onchange ile çalıştırılacak
+  // fonksiyon atandı
+  const handleChange = (event) => {
+    console.log("value is:", event.target.value);
+    // input deger değişiminde inputDeger değişkenine otomatik değer ata
+    inputDeger = event.target.value;
+  };
+
+  return (
+    <div className="App">
+      <h1>Bilgisayar Listesi :</h1>
+
+      <input
+        name="bilgisayarAdi"
+        type="text"
+        id="bilgisayarAdi"
+        onChange={handleChange} // input içindeki text değişimini yakalar.
+      />
+
+      <button
+        onClick={() => {
+          // satislar fonksiyonundan gelecek olan nesne için atama yapıldı
+          // satislar fonksiyonunun 1. parametresinde istenen nesne olarak
+          // acilis_deger nesnesi verildi
+          // 2. parametre olarak istenen nesnenin içine islem türü olarak
+          // tur elemanına "BILGISAYAR_EKLE" atandı.
+          // yuklenecekEleman elemanına da input elementi içindeki text atandı.
+
+          let yenidurum = satislar(ACILIS_DEGER, {
+            yuklenecekEleman: inputDeger,
+            tur: "BILGISAYAR_EKLE"
+          });
+          console.log(yenidurum.bilgisayarListesi);
+        }}
+      >
+        Listeye Ekle
+      </button>
+    </div>
+  );
+}
+
+
+
+
+
+
+
+ESModules (ES modülleri)
+
+https://codesandbox.io/s/wandering-dawn-q75qml?file=/src/index.js:0-1563
+
+index.js:
+import { arabaMarka } from "./second.js";
+// import işleminde mutlaka diğer js dosyasında export satırında verilen
+// isim aynen yazılır ve süslü parantez içine alınır.
+// ardından from kelimesi eklenir
+// ardından da tırnak içinde diğer js dosyasının yolu ve adı yazılır.
+import { km } from "./second.js";
+import { bakimKalanKmHesapla } from "./second.js";
+
+// istenirse tüm değişkenler tek import satırında alınabilir.
+// import kelimesinden sonra süslü parantez içinde değişken adları aralarına virgül konularak yazılır.
+
+import { musteriAdi, kayitYili, toplamYildiz } from "./second.js";
+
+// import sırasında istenirse farklı değişken adlarına atama
+// yağılabilir.
+import {
+  musteriAdi as customerName,
+  kayitYili as registrationYear,
+  toplamYildiz as totalStar
+} from "./second.js";
+
+console.log("index js içinde import edilen arabaMarka", arabaMarka);
+console.log("index js içinde import edilen km", km);
+console.log(
+  "index js içinde import edilen bakimKalanKmHesapla",
+  bakimKalanKmHesapla
+);
+let kalankm = bakimKalanKmHesapla(km);
+console.log("Kalan km = ", kalankm);
+
+console.log(
+  "index js içinde toplu import edilen musteriAdi, kayitYili, toplamYildiz",
+
+  musteriAdi,
+  kayitYili,
+  toplamYildiz
+);
+let topyild = toplamYildiz(kayitYili);
+console.log("Toplam Yıldız = ", topyild);
+
+console.log(
+  "index js içinde toplu import edilen ve isim değişikliği yapılan customerName, registrationYear, totalStar",
+
+  customerName,
+  registrationYear,
+  totalStar
+);
+
+let totalSt = totalStar(registrationYear);
+console.log("Total Stars = ", totalSt);
+
+
+second.js:
+// değişkenler ve fonksiyonlar export ifadesi ile tek tek aktarılabilir
+
+export let arabaMarka = "Hyundai";
+export let km = 124850;
+export function bakimKalanKmHesapla(km) {
+  return 10000 - (km % 10000);
+}
+
+let musteriAdi = "Deniz Değirmenci";
+let kayitYili = 2017;
+function toplamYildiz(kayitYili) {
+  return new Date().getFullYear() - kayitYili;
+}
+// veya aktarılmak istenen değişken ve fonksiyonlar beraber olarak
+// süslü parantez içine alınıp aralarına virgül konularak nesne gibi aktarılır.
+export { musteriAdi, kayitYili, toplamYildiz };
+
+
+
+
+
+Default Exports & Imports (varsayılan içe/dışa aktarmalar)
+
+https://codesandbox.io/s/thirsty-frog-1ek7if?file=/src/second.js
+second.js:
+
+export default function topla(sayi1, sayi2) {
+  return sayi1 + sayi2;
+}
+
+export default function carp(sayi1, sayi2) {
+  return sayi1 * sayi2;
+}
+
+
+
+
+https://codesandbox.io/s/friendly-bardeen-pxoniu?file=/src/index.js
+index.js:
+import okulNo from "./second";
+import { ad, soyad } from "./second";
+console.log(okulNo);
+
+console.log(ad);
+console.log(soyad);
+
+second.js:
+let ad = "Demirkan";
+let soyad = "Ergencilioğlu";
+
+let okulNo = "2019-23";
+
+export { okulNo as default, ad, soyad };
+
+
+https://codesandbox.io/s/kind-danilo-torwhz?file=/src/index.js
+
+index.js:
+import goster from "./second";
+
+goster();
+
+
+
+second.js:
+export default function goster() {
+  console.log("ben second.js den geliyorum.");
+}
+
+
+https://codesandbox.io/s/funny-fast-jxb2xs?file=/src/index.js
+
+index.js:
+import { default as kodOlustur, isim, tc } from "./second";
+
+console.log(kodOlustur(isim, tc));
+
+
+
+
+second.js:
+
+export let isim = "Abdülrezzak";
+export let tc = 12345678912;
+export default function kodOlustur(isim, tc) {
+  return isim.slice(0, 2) + tc.toString().slice(0, 4);
+}
+
+
+
+
+
+Immediate re-export (anında yeniden dışa aktarma)
+
+https://codesandbox.io/s/nifty-pine-dzs0pe?file=/src/index.js
+
+index.js:
+
+// import kodOlustur from "./third";
+
+// kodOlustur second.js'den import edildi.
+// ancak aktarma yoluyla geldiği için -- yani default olarak
+// gelmediği için ---  süslü parantez içine alınarak import
+// edilmek zorunda
+import { kodOlustur } from "./second";
+
+console.log(kodOlustur("deniz", 123553254));
+
+
+
+second.js:
+
+// import { default as kodOlustur, isim, tc } from "./third";
+
+// console.log(kodOlustur(isim, tc));
+
+export { default as kodOlustur } from "./third";
+// from "./third";  ile third.js dosyasındaki export edilen
+// elemanları çektik.
+
+// export {default as kodOlustur} ile third.js den alınan
+// değişkenlerin içinden seçilen kodOlustur function'ı
+// bu js üzerinden tekrar export edildi.
+
+
+
+third.js:
+
+export let isim = "Abdülrezzak";
+export let tc = 12345678912;
+
+// export default olarak fonksiyonu tanımladık.
+export default function kodOlustur(isim, tc) {
+  return isim.slice(0, 2) + tc.toString().slice(0, 4);
+}
+
+
+
+https://codesandbox.io/s/nifty-mendeleev-ulg802?file=/src/index.js
+
+index.js:
+
+import { default as kodOlustur, isim, tc, showme } from "./second";
+
+console.log(isim);
+console.log(tc);
+// third.js'den export edilen ve second.jsden atlama
+// yapılan -- default -- VERİLMEYEN showme fonksiyonu
+// çalıştı.
+console.log(showme());
+
+// ama third.js den   default olarak export  edilen fonksiyon
+// atlama ile gelince çalışmıyor.
+console.log(kodOlustur("22", 333333));
+
+
+second.js:
+
+export * from "./third";
+
+
+
+
+third.js:
+
+export let isim = "Abdülrezzak";
+export let tc = 12345678912;
+
+// export default olarak fonksiyonu tanımladık.
+export default function kodOlustur(isim, tc) {
+  return isim.slice(0, 2) + tc.toString().slice(0, 4);
+}
+
+export function showme() {
+  console.log("My name is Dexter");
+}
+
+
+
+Ternary Conditional Operators (üç değişkenli koşul operatörleri)
+
+https://codesandbox.io/s/sad-surf-8ietnv?file=/src/index.js
+
+let sayi = 22;
+
+sayi > 30 ? console.log("sayi 30 dan küçük") : console.log("sayi 30 dan büyük");
+
+console.log("************************");
+let sayi2 = 22 - "a77";
+
+sayi2 ? console.log("sayıda bir deger var") : console.log("sayi değil");
+
+console.log("======================================");
+
+let yazi = "";
+
+yazi ? console.log("yazı içinde bişeyler var") : console.log("yazının içi boş");
+
+console.log("++++++++++++++++++++++++++++++++++++++");
+let kristal = null;
+
+kristal ? console.log("null dan farklı bir değer") : console.log("null geldi");
+console.log("++++++++++++++++++++++++++++++++++++++");
+
+let degisken;
+
+degisken
+  ? console.log("degisken içine değer atanmış")
+  : console.log("deger ataması yok");
+console.log("++++++++++++++++++++++++++++++++++++++");
+
+let sayi3 = 0;
+
+sayi3
+  ? console.log("sayi değişkeninde değer var")
+  : console.log("sayi 0 null veya undefined");
+
+
+
+
+Array Methods (dizi metodları)
+
+.find()
+https://codesandbox.io/s/angry-resonance-p7bvoj?file=/src/index.js
+const arabalar = [
+  { no: 1, marka: "Honda", yil: 2015 },
+  { no: 2, marka: "BMW", yil: 2012 },
+  { no: 3, marka: "Citroen", yil: 2016 },
+  { no: 4, marka: "Rolce Royce", yil: 2019 },
+  { no: 5, marka: "Pontiac", yil: 2021 }
+];
+
+let sonuc = arabalar.find((araba) => araba.yil > 2016);
+
+console.log(sonuc);
+
+
+
+.some()
+
+https://codesandbox.io/s/beautiful-fast-uoe2jx?file=/src/index.js
+
+const arabalar = [
+  { no: 1, marka: "Honda", yil: 2015 },
+  { no: 2, marka: "BMW", yil: 2012 },
+  { no: 3, marka: "Citroen", yil: 2016 },
+  { no: 4, marka: "Rolce Royce", yil: 2019 },
+  { no: 5, marka: "Pontiac", yil: 2021 }
+];
+
+let sonuc = arabalar.some((araba) => araba.yil > 2016);
+// some metodu ile aranan şartı sağlayan dizi elemanı
+// var mı yok mu ona bakılır. Eğer bir veya daha fazla eleman şarta uyuyorsa true döner.
+console.log(sonuc);
+
+
+
+.every()
+
+https://codesandbox.io/s/weathered-dew-1o6bgf?file=/src/index.js:0-435
+
+const arabalar = [
+  { no: 1, marka: "Honda", yil: 2015 },
+  { no: 2, marka: "BMW", yil: 2012 },
+  { no: 3, marka: "Citroen", yil: 2016 },
+  { no: 4, marka: "Rolce Royce", yil: 2019 },
+  { no: 5, marka: "Pontiac", yil: 2021 }
+];
+
+let sonuc = arabalar.every((araba) => araba.yil > 2016);
+// every metodu ile tüm array elemanlarının istenen şartı
+// sağlayıp sağlamadığı kontrol edilir.
+//eğer sağladıysa true döner.
+
+console.log(sonuc);
+
+
+
+
+.includes()
+
+https://codesandbox.io/s/amazing-snyder-o4ocp8?file=/src/index.js
+
+const musteri = [
+  { no: 1, ad: "Harun Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 2, ad: "Mehmet Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 3, ad: "Ahmet Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 4, ad: "Deniz Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 5, ad: "Niyazi Çalışkan", adres: "Yenimahalle, Ankara" }
+];
+
+musteri.forEach((item) => {
+  item.adres.includes("Ankara")
+    ? console.log("var : ", item.no)
+    : console.log("yok");
+});
+
+
+.map()
+
+https://codesandbox.io/s/compassionate-frost-xgifo0?file=/src/index.js
+
+const musteri = [
+  { no: 1, ad: "Harun Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 2, ad: "Mehmet Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 3, ad: "Ahmet Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 4, ad: "Deniz Çalışkan", adres: "Yenimahalle, Ankara" },
+  { no: 5, ad: "Niyazi Çalışkan", adres: "Yenimahalle, Ankara" }
+];
+
+let duzeltilmis = musteri.map((item) => {
+  item.adres = item.adres + ", Türkiye";
+  let yeniEleman = { no: item.no, ad: item.ad, adres: item.adres };
+  return yeniEleman;
+});
+
+console.log(duzeltilmis);
+
+
+https://codesandbox.io/s/keen-leaf-dk6chc?file=/src/App.js
+
+App.js:
+
+import "./styles.css";
+
+export default function App() {
+  const liste = [
+    { name: "Listitem 1", key: 1 },
+    { name: "Listitem 2", key: 2 },
+    { name: "Listitem 3", key: 3 },
+    { name: "Listitem 4", key: 4 }
+  ];
+
+  return (
+    <div className="App">
+      <h1>Hello CodeSandbox</h1>
+      <p>deneme</p>
+
+      {liste.map((item) => (
+        // key eşitlemesini mutlaka ilk p etiketinin içinde yap
+        <p key={item.key}>{item.name}</p>
+      ))}
+    </div>
+  );
+
+
+.filter()
+
+https://codesandbox.io/s/friendly-cori-3jhwki?file=/src/index.js
+
+const calisanlar = [
+  { ad: "ismail", soyad: "demir", kayitNo: 12 },
+  { ad: "ismail", soyad: "çelik", kayitNo: 13 },
+  { ad: "ismail", soyad: "demirci", kayitNo: 14 },
+  { ad: "ismail", soyad: "delioğlu", kayitNo: 10 },
+  { ad: "ismail", soyad: "yüzbaşıoğlu", kayitNo: 16 }
+];
+
+let sonuc = calisanlar.filter((item) => {
+  return item.soyad.includes("de") ? item : "";
+});
+
+console.log(sonuc);
+console.log(sonuc[0].soyad);
+console.log("*************************");
+
+let donus = calisanlar
+  .filter((item) => item.soyad.includes("oğ"))
+  .map((item) => (item.kayitNo > 14 ? 5 : 7));
+
+// ilk olarak filter metodunu uygular
+// filterdan geri dönen diziyi alır ve onun
+// üzerine map metodunu uygular.
+console.log(donus);
+
+
+
+.reduce()
+
+https://codesandbox.io/s/great-hill-zm3emn?file=/src/index.js
+
+const fiyatlar = [37, 22, 13, "ahmet", -2, NaN];
+
+// Reducer fonksiyonu dört adet parametre alır:
+// accumulator (her döngüden çıkan sonucun toplandığı değer),
+// current value (sırası gelen dizi değeri),
+// current index (sırası gelen değerin dizideki konumu),
+//ve source array (üzerinde reduce uygulanan dizi.)
+
+// reduce metodu dizinin 1. elemanından başlayarak tüm elemanları dolaşır.
+// bu dolaşma sırasında --toplam-- parametresinin içine aktifElemandaki değeri
+// ekleyerek gider. her elemanın değerini toplam içine ekleyerek devam eder.
+// en sonunda çıkan toplamı değişkene atar.
+
+// toplam ve aktifEleman parametreleri mecburidir.
+// fonksiyondan sonra v,rgül ile eklenen son parametre başlangıç değeridir.
+
+// bu örneğin sonucuna bakalım
+// 72ahmet-2NaN    neden ? -> çünkü arada string olunca concat yaptı.
+let baslangicDegeri = 0;
+
+let total = fiyatlar.reduce((toplam, aktifEleman, indexNo, orjDizi) => {
+  return toplam + aktifEleman;
+}, baslangicDegeri);
+
+console.log(total);
+console.log("************************");
+
+const sayilar = [3, 5, 7, 9, 22];
+
+let sayilarinKareleriToplami = sayilar.reduce(
+  (toplam, deger) => (toplam += deger * deger)
+);
+
+console.log(sayilarinKareleriToplami);
+
+
+
+
+
+Promises and async/await
+
+https://codesandbox.io/s/epic-moon-k9ogi1?file=/src/index.js
+
+
+let deger = "tamam";
+// promise yapısının çalışmasını test etmek için kullanılan
+// data değişkenidir.
+
+let gorev = new Promise((resolve, reject) => {
+  // let anahtar sözcüğü ile gorev adında promise ataması yapıldı
+  // promise içine verilen fonksiyonda resolve ve reject adında iki
+  // callback fonksiyon parametre olarak verildi.
+  // resolve, yanıt olumlu olursa tetiklenecek fonksiyon,
+  // reject, yanıt olumsuz olursa tetiklenecek fonksiyon
+
+  let sonuc = setTimeout(() => {
+    // async yapı için setTimeout ile gecikmeli işlem yapıldı
+
+    if (deger === "tamam") {
+      //işlem sonucu olumlu sonuç dönerse --veya hata olmazsa--
+      // resolve callback fonksiyonu tetiklendi
+      resolve("Görev tamamlandı");
+    } else {
+      // eğer hata olursa reject callback fonksiyonu tetiklendi.
+      reject("Başarısız");
+    }
+  }, 2000);
+}).then(
+  // then metodu, promise içindeki işlem bittikten sonra
+  // ilk çalıştırılacak fonksiyondur. mutlaka çağrılır.
+
+  // virgülle ayrılmış şekilde iki iç callback fonksiyonu vardır.
+  // bu callbackler yukarıdaki resolve ve reject callbackleridir.
+  // istenirse sadece resolve callback fonksiyonuda çalıştırılır.
+  (resolve) => {
+    // parametre olarak verilen resolve aslında promise içindeki
+    // bizim yazıp döndürdüğümüz resolve yanıtıdır.
+    console.log(resolve);
+  },
+  (reject) => {
+    // parametre olarak verilen reject aslında promise içindeki
+    // bizim yazıp döndürdüğümüz reject yanıtıdır.
+    console.log(reject);
+  }
+);
+
+
+https://codesandbox.io/s/funny-mayer-lcr5s2?file=/src/index.js
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 100);
+}
+
+async function hesapla() {
+  let sayi1 = await getRandomNumber();
+
+  let sayi2 = await getRandomNumber();
+
+  return sayi1 + sayi2;
+}
+
+hesapla().then((sonuc) => console.log(sonuc));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
